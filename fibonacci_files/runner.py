@@ -38,7 +38,7 @@ command_list = [
      ],
     ["run compiled java file",
      ["java", "fib"],
-     [["rm","fib.class"]]
+     [["rm", "fib.class"]]
      ],
     ["run php file",
      ["php", "fib.php"],
