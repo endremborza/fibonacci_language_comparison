@@ -1,4 +1,5 @@
 from timed_command_class import TimedCommand
+from runner_class import CommandListRunner
 
 command_list = [
     TimedCommand(
@@ -25,6 +26,4 @@ command_list = [
     )
 ]
 
-
-for timed_command in command_list[1:]:
-    timed_command.run()
+CommandListRunner(command_list).run()
