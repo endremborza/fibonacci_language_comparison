@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+   language_tester:
+     build:
+       context: .
+       dockerfile: Dockerfile
+     image: language_tester:latest
+     stdin_open: true
+     tty: true
+     volumes:
+       - ./fibonacci_files:/language_tester
+     working_dir: /language_tester
+     command: ["python", "runner.py"]
