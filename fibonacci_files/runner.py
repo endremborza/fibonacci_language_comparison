@@ -25,5 +25,8 @@ command_list = [
         "run in php"
     )
 ]
+import subprocess
+subprocess.Popen(["python", "/app/app.py"],
+                 stdout=subprocess.PIPE)
 
 CommandListRunner(command_list).run()

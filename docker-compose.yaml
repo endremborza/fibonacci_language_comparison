@@ -4,10 +4,15 @@ services:
      build:
        context: .
        dockerfile: Dockerfile
+       args:
+         - PORT_NO=${PORT_NO}
      image: language_tester:latest
      stdin_open: true
      tty: true
+     ports:
+       - ${PORT_NO}:${PORT_NO}
      volumes:
        - ./fibonacci_files:/language_tester
+       - ./app:/app
      working_dir: /language_tester
      command: ["python", "runner.py"]
