@@ -62,8 +62,30 @@ def update_columns(n_clicks, value, existing_columns):
      Input('contestants-table', 'columns')])
 def display_output(rows, columns):
     pass
-    # calc some shit
-    return []
+
+    contestants = columns[2:]
+    contestant_scores = {k['name']: 0 for k in contestants}
+    for r in rows:
+        for c in contestant_scores.keys():
+            try:
+                contestant_scores[c] += abs(r['outcome'] - float(r[c])) / (r['outcome'] + float(r[c])) * 2
+            except KeyError:
+                pass
+            except TypeError:
+                pass
+            except ValueError:
+                pass
+
+    board = sorted(contestant_scores.items(),
+                   key=lambda x: x[1])
+
+    out = []
+    for rank, cs in enumerate(board):
+        out.append(html.H4('{0:}. - {1:} ({2:0.2f}%)'.format(rank+1,
+                                                             cs[0],
+                                                             cs[1] * 100)))
+
+    return html.Div(children=out)
 
 
 @app.callback(
